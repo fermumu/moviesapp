@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Este proyecto es desarrollado por Miguel Carrillo para explicar las funcionalidades de REACT y el fetching de datos a la API The Movie DB.
+
 ## Available Scripts
 
 In the project directory, you can run:
