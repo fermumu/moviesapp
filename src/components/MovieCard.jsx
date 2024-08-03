@@ -1,9 +1,37 @@
-import React from 'react';
+import React,{ useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { faSquarePollVertical } from '@fortawesome/free-solid-svg-icons';
+import VideoIcon from './VideoIcon';
 
 export default function MovieCard({ movie }) {
+  const [videoUrl, setVideoUrl] = useState('');
+
+  useEffect(() => {
+    async function fetchMovieVideo(movieId) {
+      const options = {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0NGI4ZGEyYzQ2YzExZWUzZGE1YmQ0NGU1MjgzMThkZCIsIm5iZiI6MTcyMjY0MDUxMi42NzA4NDcsInN1YiI6IjYyZjNkOTIxNTk0Yzk0MDA3ZjQ3ZjVmOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dLAkHNwqte8brPOviFzkJBXnNH3znWUyAr6QDaX6dAU'
+        }
+      };
+
+      try {
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`, options);
+        const data = await response.json();
+        const trailer = data.results.find(video => video.type === 'Trailer');
+        if (trailer) {
+          setVideoUrl(`https://www.youtube.com/watch?v=${trailer.key}`);
+        }
+      } catch (error) {
+        console.error('Error fetching movie video:', error);
+      }
+    }
+
+    fetchMovieVideo(movie.id);
+  }, [movie.id]);
+
   return (
     <>
         <div className="container my-5">
@@ -18,6 +46,7 @@ export default function MovieCard({ movie }) {
               </div>
               <div className="col-lg-3 p-0 shadow-lg">
                   <img className="rounded-lg-3" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="" width="330" />
+                  {videoUrl && <VideoIcon videoUrl={videoUrl} />}
               </div>
             </div>
         </div>
