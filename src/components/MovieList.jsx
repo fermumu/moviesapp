@@ -5,6 +5,7 @@ import Header from "./Header.jsx";
 import Button from "./Button.jsx";
 import "./MovieList.css";
 import SearchMovies from './SearchMovies.jsx';
+import PopularCustomHook from './PopularCustomHook.jsx';
 
 export default function MovieList() {
   const [movieList, setMovieList] = useState([]);
@@ -64,7 +65,7 @@ export default function MovieList() {
   //fetchPopularMovies();
 
   let content;
-  if (displayPage === 1) {
+  if (displayPage === 1) { // pageId
     content = (
       <>
         <div className="fixed-buttons d-flex justify-content-between px-5">
@@ -81,6 +82,13 @@ export default function MovieList() {
     content = (
       <>
         <SearchMovies />
+      </>
+    );
+  }
+  if (displayPage === 3) {
+    content = (
+      <>
+        <PopularCustomHook />
       </>
     );
   }
