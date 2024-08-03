@@ -4,8 +4,10 @@ export default function NavButton({ children, handleClick }) {
   let pageId;
   if (children === 'Popular movies') {
     pageId = 1;
-  } else {
+  } else if (children === 'Search by name') {
     pageId = 2;
+  } else {
+    pageId = 3;
   }
   return (
     <>
