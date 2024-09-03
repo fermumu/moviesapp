@@ -14,7 +14,7 @@ export default function Header({ handleClick }) {
             <ul className="nav nav-pills align-items-end">
                 <li className="nav-item"><NavButton handleClick={handleClick}>Peliculas Populares</NavButton></li>
                 <li className="nav-item"><NavButton handleClick={handleClick}>Search by name</NavButton></li>
-                <li className="nav-item"><NavButton handleClick={handleClick}>Custom Hook</NavButton></li>
+                <li className="nav-item"><NavButton handleClick={handleClick}>Prueba</NavButton></li>
             </ul>
             </header>
         </div>
